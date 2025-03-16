@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Супер Кликер 2077</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #222;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #counter {
+      font-size: 4em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    #clickerButton {
+      padding: 30px 60px;
+      font-size: 2em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+      transition: all 0.2s ease;
+      outline: none;
+    }
+        #clickerButton:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+        }
+
+    #upgradeButton {
+        padding: 10px 20px;
+        font-size: 1em;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        display: none; /* Сначала скрываем */
+        transition: all 0.2s;
+        outline: none;
+    }
+
+    #upgradeButton:hover, #clickerButton:hover{
+        filter: brightness(1.2);
+    }
+    #upgradeButton:active{
+       transform: scale(0.95);
+    }
+
+  </style>
+</head>
+<body>
+  <div id="counter">0</div>
+  <button id="clickerButton">Кликай, сука!</button>
+  <button id="upgradeButton">Улучшить (+1 к клику)</button>
+
+  <audio id="moanSound" src="https://github.com/Dimaa1113/hje/raw/refs/heads/main/ston.mp3" preload="auto"></audio>
+
+  <script>
+    let count = 0;
+    let clickValue = 1;
+    const counterDisplay = document.getElementById("counter");
+    const clickerButton = document.getElementById("clickerButton");
+    const upgradeButton = document.getElementById("upgradeButton");
+    const moan = document.getElementById("moanSound");
+
+    clickerButton.addEventListener("click", () => {
+      // СРАЗУ, БЛЯДЬ, ВРУБАЕМ СТОНЫ!
+      moan.volume = 1.0;
+      moan.play();
+
+      count += clickValue;
+      counterDisplay.textContent = count;
+
+      if (count >= 10) {
+        upgradeButton.style.display = "block";
+      }
+    });
+
+    upgradeButton.addEventListener("click", () => {
+      if (count >= 10) {
+        count -= 10;
+        clickValue++;
+        counterDisplay.textContent = count;
+        upgradeButton.textContent = `Улучшить (+${clickValue} к клику)`;
+      }
+    });
+  </script>
+</body>
+</html>
