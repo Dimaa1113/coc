@@ -1,104 +1,75 @@
-<!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Супер Кликер 2077</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #222;
-      color: #eee;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-    }
-
-    #counter {
-      font-size: 4em;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #0ff;
-    }
-
-    #clickerButton {
-      padding: 30px 60px;
-      font-size: 2em;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-      transition: all 0.2s ease;
-      outline: none;
-    }
-        #clickerButton:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #1e1e1e;
         }
-
-    #upgradeButton {
-        padding: 10px 20px;
-        font-size: 1em;
-        background-color: #28a745;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 20px;
-        display: none; /* Сначала скрываем */
-        transition: all 0.2s;
-        outline: none;
-    }
-
-    #upgradeButton:hover, #clickerButton:hover{
-        filter: brightness(1.2);
-    }
-    #upgradeButton:active{
-       transform: scale(0.95);
-    }
-
-  </style>
+        .chat-background {
+            background-image: url('https://placehold.co/400x800');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
-<body>
-  <div id="counter">0</div>
-  <button id="clickerButton">Кликай, сука!</button>
-  <button id="upgradeButton">Улучшить (+1 к клику)</button>
-
-  <audio id="moanSound" src="https://github.com/Dimaa1113/hje/raw/refs/heads/main/ston.mp3" preload="auto"></audio>
-
-  <script>
-    let count = 0;
-    let clickValue = 1;
-    const counterDisplay = document.getElementById("counter");
-    const clickerButton = document.getElementById("clickerButton");
-    const upgradeButton = document.getElementById("upgradeButton");
-    const moan = document.getElementById("moanSound");
-
-    clickerButton.addEventListener("click", () => {
-      // СРАЗУ, БЛЯДЬ, ВРУБАЕМ СТОНЫ!
-      moan.volume = 1.0;
-      moan.play();
-
-      count += clickValue;
-      counterDisplay.textContent = count;
-
-      if (count >= 10) {
-        upgradeButton.style.display = "block";
-      }
-    });
-
-    upgradeButton.addEventListener("click", () => {
-      if (count >= 10) {
-        count -= 10;
-        clickValue++;
-        counterDisplay.textContent = count;
-        upgradeButton.textContent = `Улучшить (+${clickValue} к клику)`;
-      }
-    });
-  </script>
+<body class="text-white">
+    <div class="flex flex-col h-screen">
+        <!-- Header -->
+        <div class="flex items-center justify-between bg-gray-800 p-4">
+            <div class="flex items-center">
+                <i class="fas fa-arrow-left text-white text-xl"></i>
+                <div class="ml-4 flex items-center">
+                    <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white text-xl">Л</div>
+                    <div class="ml-2">
+                        <div class="text-white font-semibold">лазанья</div>
+                        <div class="text-gray-400 text-sm">был(а) в 10:40</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <i class="fas fa-phone text-white text-xl mr-4"></i>
+                <i class="fas fa-ellipsis-v text-white text-xl"></i>
+            </div>
+        </div>
+        <!-- Chat Area -->
+        <div class="flex-1 chat-background p-4 overflow-y-auto">
+            <div class="text-center text-gray-400 text-sm mb-4">7 марта</div>
+            <div class="flex flex-col items-end mb-4">
+                <div class="bg-purple-500 text-white p-3 rounded-lg mb-1 max-w-xs">Привет)</div>
+                <div class="text-gray-400 text-xs">18:23 <i class="fas fa-check-double"></i></div>
+            </div>
+            <div class="flex flex-col items-end mb-4">
+                <div class="bg-purple-500 text-white p-3 rounded-lg mb-1 max-w-xs">Это девушка Максима</div>
+                <div class="text-gray-400 text-xs">18:23 <i class="fas fa-check-double"></i></div>
+            </div>
+            <div class="flex flex-col items-end mb-4">
+                <div class="bg-purple-500 text-white p-3 rounded-lg mb-1 max-w-xs">если еще раз подойдёшь к нему или напишешь что-то, я тебе все патлы повырываю))</div>
+                <div class="text-gray-400 text-xs">18:24 <i class="fas fa-check-double"></i></div>
+            </div>
+            <div class="text-center text-gray-400 text-sm mb-4">8 марта</div>
+            <div class="flex flex-col items-start mb-4">
+                <div class="bg-gray-700 text-white p-3 rounded-lg mb-1 max-w-xs">эм</div>
+                <div class="text-gray-400 text-xs">08:04</div>
+            </div>
+            <div class="flex flex-col items-start mb-4">
+                <div class="bg-gray-700 text-white p-3 rounded-lg mb-1 max-w-xs">мы с ним дружим</div>
+                <div class="text-gray-400 text-xs">08:04</div>
+            </div>
+            <div class="flex flex-col items-start mb-4">
+                <div class="bg-gray-700 text-white p-3 rounded-lg mb-1 max-w-xs">в чём проблема</div>
+                <div class="text-gray-400 text-xs">08:04</div>
+            </div>
+        </div>
+        <!-- Input Area -->
+        <div class="bg-gray-800 p-4 flex items-center">
+            <i class="fas fa-smile text-gray-400 text-2xl mr-4"></i>
+            <input type="text" class="flex-1 bg-gray-700 text-white p-2 rounded-lg" placeholder="Сообщение">
+            <i class="fas fa-paper-plane text-blue-500 text-2xl ml-4"></i>
+        </div>
+    </div>
 </body>
 </html>
