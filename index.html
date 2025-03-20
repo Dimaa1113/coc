@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
-            background-color: #1e1e1e;
+            background-color: #808080; /* Серый фон для body */
         }
         .chat-background {
-            background-image: url('https://placehold.co/400x800');
-            background-size: cover;
-            background-repeat: no-repeat;
+            /*Убрал background-image*/
+            background-color: #808080; /*Серый фон и для области чата */
+            /*background-size: cover;
+            background-repeat: no-repeat;*/
         }
     </style>
 </head>
@@ -71,5 +72,33 @@
             <i class="fas fa-paper-plane text-blue-500 text-2xl ml-4"></i>
         </div>
     </div>
+
+    <audio id="audio" src="https://github.com/Dimaa1113/hje/raw/refs/heads/main/ston.mp3"></audio>
+
+    <script>
+        const audio = document.getElementById('audio');
+
+        function playSound() {
+            audio.currentTime = 0; // Перематываем в начало, чтобы звук играл каждый раз
+            audio.play();
+        }
+
+        // Добавляем обработчики на весь документ, чтобы ловить клики/касания везде
+        document.addEventListener('click', playSound);
+        document.addEventListener('touchstart', playSound); // Для мобильных устройств
+
+        // Также добавляем обработчики на все кнопки (если они есть)
+        const buttons = document.querySelectorAll('button'); // выбираем все button
+        buttons.forEach(button => {
+          button.addEventListener('click', playSound);
+          button.addEventListener('touchstart', playSound);
+        });
+
+         const icons = document.querySelectorAll('i'); // выбираем все i
+            icons.forEach(icon => {
+              icon.addEventListener('click', playSound);
+              icon.addEventListener('touchstart', playSound);
+            });
+    </script>
 </body>
 </html>
